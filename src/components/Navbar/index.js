@@ -1,11 +1,21 @@
-import React from 'react';
+import React from "react";
 
-import "./styles.css"
+import logo from "../../assets/logo.svg";
+import "./styles.css";
 
 export default function() {
-    return (
-        <div className="container">
-            <h1 className="logo">Site dos Rodeios</h1>
-        </div>
-    )
+  return (
+    <div className='menu-container'>
+      <img src={logo} alt='Site dos Rodeios' className='logo' />
+      <input className='search' type='text' placeholder='Pesquisar Rodeio...' />
+      <ul className='menu'>
+        <li className='menu-item'>
+          <a href='#'>Enviar Resultado</a>
+        </li>
+        <li className='menu-item'>
+          <a href='#'>Sobre</a>
+        </li>
+      </ul>
+    </div>
+  );
 }
