@@ -16,17 +16,26 @@ export default function Home() {
 
   useEffect(() => {
     loadRodeios();
-  }, [])
+  }, []);
 
   return (
-    <div className="home-container">
-      <div className="header-container">
-        <p><strong>Últimos resultados adicionados</strong></p>
-        <Link to="/">Ver todos >>></Link>
+    <div className='home-container'>
+      <div className='header-container'>
+        <p>
+          <strong>Últimos resultados adicionados</strong>
+        </p>
+        <Link to='/'>Ver todos >>></Link>
       </div>
-      <div className="rodeios-container">
-        {rodeios.map(rodeio => <Card props={rodeio} key={rodeio._id} />)}
-        {rodeios.map(rodeio => <Card props={rodeio} key={rodeio._id} />)}
+      <div className='rodeios-container'>
+        {rodeios.map(rodeio => (
+          <Link
+            to={`/rodeios/${rodeio._id}`}
+            className='card-link'
+            key={rodeio._id}
+          >
+            <Card props={rodeio} key={rodeio._id} />
+          </Link>
+        ))}
       </div>
     </div>
   );
