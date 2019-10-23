@@ -4,13 +4,14 @@ import "./styles.css";
 
 export default function Card({ props }) {
   const { nome, entidade, resultado } = props;
+  const ano = new Date(props.data).getFullYear();
 
   return (
     <div className='card-container'>
       <h1>{nome}</h1>
       <div className='card-textarea'>
         <p>
-          <strong>Data</strong>: 2019
+          <strong>Data</strong>: {ano}
         </p>
         <p>
           <strong>Organizador</strong>: {entidade.nome}
