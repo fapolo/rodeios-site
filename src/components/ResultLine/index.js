@@ -10,20 +10,18 @@ export default function ResultLine({ props, pos }) {
     correcao,
     harmonia,
     interpretacao,
-    descontos,
+    desconto,
     musica,
-    final,
-    _id
+    final
   } = props;
 
   useEffect(() => {
     async function getEntidade(id) {
       const response = await api.get(`/entidades/${id}`);
-
-      return setEntidade(response.data.nome);
+      setEntidade(response.data.nome);
     }
 
-    getEntidade(props.entidade);
+    getEntidade(props.entidade.id);
 
     //eslint-disable-next-line
   }, []);
@@ -39,11 +37,11 @@ export default function ResultLine({ props, pos }) {
         <span className='result-pos'>{pos + 1}</span>
         <span className='result-name'>{entidade}</span>
         <span className='grade-highlight'>{final.toFixed(3)}</span>
-        <span className='result-expander' onClick={() => expandComplete(_id)}>
+        <span className='result-expander' onClick={() => expandComplete(props.entidade.id)}>
           {"<"}
         </span>
       </p>
-      <div className='result-line-complete hide' id={_id}>
+      <div className='result-line-complete hide' id={props.entidade.id}>
         <p>
           <strong>COR</strong>
           <span>{correcao.toFixed(3)}</span>
@@ -62,7 +60,7 @@ export default function ResultLine({ props, pos }) {
         </p>
         <p>
           <strong>DESC</strong>
-          <span>{descontos.toFixed(3)}</span>
+          <span>{desconto.toFixed(3)}</span>
         </p>
       </div>
     </div>

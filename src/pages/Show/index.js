@@ -7,15 +7,16 @@ import "./styles.css";
 
 export default function Show({ match }) {
   const [rodeio, setRodeio] = useState({});
-  const [organizador, setOrganizador] = useState({});
+  const [entidade, setEntidade] = useState({});
   const [resultado, setResultado] = useState([]);
   const { rodeio_id } = match.params;
 
   async function loadDados() {
-    const response = await api.get(`/rodeios/${rodeio_id}`);
-    setRodeio(response.data);
-    setOrganizador(response.data.organizador);
-    setResultado(response.data.resultado);
+    const foundRodeio = await api.get(`/rodeios/${rodeio_id}`);
+    const foundEntidade = await api.get(`/entidades/${foundRodeio.data.entidade.id}`);
+    setRodeio(foundRodeio.data);
+    setEntidade(foundEntidade.data);
+    setResultado(foundRodeio.data.resultado);
   }
 
   useEffect(() => {
@@ -28,8 +29,8 @@ export default function Show({ match }) {
       <div className='header'>
         <h1>{rodeio.nome}</h1>
         <p>
-          <strong>Organizado por:</strong> {organizador.nome} -{" "}
-          {organizador.cidade} {organizador.rt}RT
+          <strong>Organizado por:</strong> {entidade.nome} -{" "}
+          {entidade.cidade} {entidade.rt}RT
         </p>
       </div>
       <div className='dados-container'>
@@ -37,8 +38,8 @@ export default function Show({ match }) {
           <div className='dados-section' key={section._id}>
             <h2 className='section-title'>{section.modalidade}</h2>
             <div className='section-resultado'>
-              {section.dados.map((entidade, index) => (
-                <ResultLine key={entidade._id} props={entidade} pos={index} />
+              {section.dados.map((entrada, index) => (
+                <ResultLine key={entrada.entidade.id} props={entrada} pos={index} />
               ))}
             </div>
           </div>

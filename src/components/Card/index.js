@@ -3,7 +3,7 @@ import React from "react";
 import "./styles.css";
 
 export default function Card({ props }) {
-  const { nome, organizador, resultado } = props;
+  const { nome, entidade, resultado } = props;
 
   return (
     <div className='card-container'>
@@ -13,7 +13,7 @@ export default function Card({ props }) {
           <strong>Data</strong>: 2019
         </p>
         <p>
-          <strong>Organizador</strong>: {organizador.nome}
+          <strong>Organizador</strong>: {entidade.nome}
         </p>
         <p>
           <strong>Modalidades</strong>:
