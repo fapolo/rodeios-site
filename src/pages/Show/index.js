@@ -23,7 +23,6 @@ export default function Show({ match }) {
     loadDados();
     //eslint-disable-next-line
   }, []);
-
   return (
     <div className='resultado-container'>
       <div className='header'>
@@ -34,11 +33,11 @@ export default function Show({ match }) {
         </p>
       </div>
       <div className='dados-container'>
-        {resultado.map(section => (
-          <div className='dados-section' key={section._id}>
-            <h2 className='section-title'>{section.modalidade}</h2>
+        {resultado.map(modalidade => (
+          <div className='dados-section' key={modalidade._id}>
+            <h2 className='section-title'>{modalidade.modalidade}</h2>
             <div className='section-resultado'>
-              {section.dados.map((entrada, index) => (
+              {modalidade.dados.map((entrada, index) => (
                 <ResultLine key={entrada.entidade.id} props={entrada} pos={index} />
               ))}
             </div>
